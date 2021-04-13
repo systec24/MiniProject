@@ -35,6 +35,10 @@ int main() {
 			}
 
 		} else if(menu == 4) {
+			searchName(fruit, index);
+		} else if(menu == 5) {	
+			searchRating(fruit, index);
+		} else if(menu == 6) {
 	
 			num = selectDataNo(fruit, index);
 
@@ -47,9 +51,8 @@ int main() {
 					printf("=> Cancelled!\n");
 				}
 			}
-		} else if(menu == 5) {
-			searchName(fruit, index);
-		} else if(menu == 6) {
+
+		} else if(menu == 7) {
 			saveData(fruit, index);
 		}
 	}
