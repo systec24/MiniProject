@@ -1,5 +1,29 @@
 #include "product.h"
 
+int loadData(Product *p[]) {
+	int i = 0;
+	FILE *fp;
+
+	fp = fopen("product.txt", "rt");
+
+	if(fp == NULL) {
+		printf("=> No file detected.\n");
+		return i;
+	}
+
+	for(; i < 100; i++) {
+		fscanf(fp,"%s", p[i]->name);
+		if(feof(fp)) break;
+		fscanf(fp, "%d", &p[i]->grams);
+		fscanf(fp, "%d", &p[i]->price);
+		fscanf(fp, "%d", &p[i]->rating);
+		fscanf(fp, "%d", &p[i]->rating_no);
+	}
+	fclose(fp);
+	printf("=> Successfully loaded!\n");
+	return i;
+}
+
 int addProduct(Product *p) {
 	getchar();
 	printf("Name? ");
@@ -84,15 +108,31 @@ int deleteProduct(Product *p[], int n) {
 	return 1;
 }
 
+void saveData(Product *p[], int count) {
+	FILE *fp;
+	fp = fopen("product.txt", "wt");
+
+	for(int i = 0; i < count; i++) {
+		if(p[i]->name == NULL) continue;
+		fprintf(fp, "%s %d %d %d %d\n", p[i]->name, p[i]->grams, p[i]->price, p[i]->rating, p[i]->rating_no);
+		
+		fclose(fp);
+		printf("=> Saved!\n");
+	}
+}
+
 int selectMenu() {
 	int menu;
 	printf("\n1. Add\n");
 	printf("2. Read\n");
 	printf("3. Update\n");
 	printf("4. Delete\n");
+	printf("5. Save to file\n");
 	printf("0. End Program\n");
 	printf("원하는 메뉴는? => ");
 	scanf("%d", &menu);
 	printf("\n");
 	return menu;
 }
+
+

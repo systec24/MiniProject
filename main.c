@@ -6,6 +6,9 @@ int main() {
 	int count = 0, index = 0;
 	int isdel, num;
 
+	count = loadData(fruit);
+	index = count;
+
 	while(1) {
 		menu = selectMenu();
 		if(menu == 0) break;
@@ -44,6 +47,8 @@ int main() {
 					printf("=> Cancelled!\n");
 				}
 			}
+		} else if(menu == 5) {
+			saveData(fruit, index);
 		}
 	}
 	

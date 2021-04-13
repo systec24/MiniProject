@@ -8,5 +8,8 @@ all : $(TARGET)
 $(TARGET) : $(OBJECTS)
 	$(CC) -o $@ $^
 
+deltxt : 
+	rm product.txt
+
 clean : 
 	rm Product *.o
