@@ -169,22 +169,23 @@ void searchRating(Product *p[], int count) {
 
 		printf("\nNO\tName\tGrams\tPrice\tRating\tRating No.\n");
 		printf("==================================================\n");
-		for(int i = 0; i < count; i++) {
-			if(p[i]->name == NULL) continue;
-		
-			if(highlow == 0) {
 
+		for(int i = 0; i < count; i++) {
+			if(p[i]->name == NULL) continue;	
+			if(highlow == 0) {
+				
 				if(search < p[i]->rating) {
 					printf("%2d\t", i+1);
 					readProduct(*p[i]);
 				}
 
 			} else if(highlow == 1) {
-
+				
 				if(search > p[i]->rating) {
 					printf("%2d\t", i+1);
 					readProduct(*p[i]);
 				}
+
 			} else if(highlow == 2) {
 
 				if(search ==  p[i]->rating) {
