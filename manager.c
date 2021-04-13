@@ -1,3 +1,4 @@
+//manager.c
 #include "manager.h"
 
 int selectDataNo(Product *p[], int count) {
