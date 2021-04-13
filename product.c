@@ -234,7 +234,7 @@ int selectMenu() {
 	printf("7. Delete\n");
 	printf("8. Save to file\n");
 	printf("0. End Program\n");
-	printf("원하는 메뉴는? => ");
+	printf("\nExecute which menu? => ");
 	scanf("%d", &menu);
 	printf("\n");
 	return menu;
