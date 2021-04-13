@@ -48,6 +48,8 @@ int main() {
 				}
 			}
 		} else if(menu == 5) {
+			searchName(fruit, index);
+		} else if(menu == 6) {
 			saveData(fruit, index);
 		}
 	}

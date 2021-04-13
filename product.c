@@ -12,6 +12,7 @@ int loadData(Product *p[]) {
 	}
 
 	for(; i < 100; i++) {
+		p[i] = (Product*)malloc(sizeof(Product));
 		fscanf(fp,"%s", p[i]->name);
 		if(feof(fp)) break;
 		fscanf(fp, "%d", &p[i]->grams);
@@ -62,7 +63,7 @@ void listProduct(Product *p[], int count) {
 	printf("==================================================\n");
 	for(i = 0; i < count; i++) {
 		if(p[i] == NULL) continue;
-		printf("%d\t", i+1);
+		printf("%2d\t ", i+1);
 		readProduct(*p[i]);
 	}
 }
@@ -74,8 +75,7 @@ void readProduct(Product p) {
 void updateProduct(Product *p) {
 	getchar();
 	printf("Name? "); 
-	fgets(p->name,
- 64, stdin);
+	fgets(p->name, 64, stdin);
 
 	p->name[strlen(p->name)-1] = '\0';
 
@@ -100,6 +100,28 @@ void updateProduct(Product *p) {
 	printf("\nUpdated!\n");
 }
 
+void searchName(Product *p[], int count) {
+	char search[64];
+	int scnt = 0;
+
+	printf("Enter name to find: ");
+	scanf("%s", search);
+	getchar();
+
+	printf("NO\tName\tGrams\tPrice\tRating\tRating No.\n");
+	printf("==================================================\n");
+	for(int i = 0; i < count; i++) {
+		if(p[i]->name == NULL) continue;
+		if(strstr(p[i]->name, search)) {
+			printf("%2d\t", i+1);
+			readProduct(*p[i]);
+			scnt++;
+		}
+	}
+	
+	if(scnt == 0) printf("=> No matching data found!\n");
+}
+
 int deleteProduct(Product *p[], int n) {
 	free(p[n-1]);
 	p[n-1] = NULL;
@@ -115,10 +137,9 @@ void saveData(Product *p[], int count) {
 	for(int i = 0; i < count; i++) {
 		if(p[i]->name == NULL) continue;
 		fprintf(fp, "%s %d %d %d %d\n", p[i]->name, p[i]->grams, p[i]->price, p[i]->rating, p[i]->rating_no);
-		
+	}	
 		fclose(fp);
 		printf("=> Saved!\n");
-	}
 }
 
 int selectMenu() {
@@ -127,12 +148,12 @@ int selectMenu() {
 	printf("2. Read\n");
 	printf("3. Update\n");
 	printf("4. Delete\n");
-	printf("5. Save to file\n");
+	printf("5. Find by name\n");
+	printf("6. Save to file\n");
 	printf("0. End Program\n");
 	printf("원하는 메뉴는? => ");
 	scanf("%d", &menu);
 	printf("\n");
 	return menu;
 }
-
 
