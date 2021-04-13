@@ -13,7 +13,7 @@ int main() {
 		menu = selectMenu();
 		if(menu == 0) break;
 		
-		if(menu == 2 || menu == 3 || menu == 4) {
+		if(menu == 2 || menu == 3 || menu == 4 || menu == 5 || menu == 6 || menu == 7) {
 			if(count == 0) {
 			       	printf("No data available.\n");
 				continue;
@@ -35,10 +35,18 @@ int main() {
 			}
 
 		} else if(menu == 4) {
+
 			searchName(fruit, index);
+
 		} else if(menu == 5) {	
+			
 			searchRating(fruit, index);
+
 		} else if(menu == 6) {
+
+			searchPrice(fruit, index);
+
+		} else if(menu == 7) {
 	
 			num = selectDataNo(fruit, index);
 
@@ -52,7 +60,7 @@ int main() {
 				}
 			}
 
-		} else if(menu == 7) {
+		} else if(menu == 8) {
 			saveData(fruit, index);
 		}
 	}

@@ -161,6 +161,47 @@ void searchRating(Product *p[], int count) {
 	if(scnt == 0) printf("=> No matching data found!\n");
 }
 
+void searchPrice(Product *p[], int count) {
+	int search, highlow;
+	int scnt = 0;
+
+	printf("Enter price to find: ");
+	scanf("%d", &search);
+
+	printf("Choose mode (0 : Higher, 1 : Lower, 2 : Same): ");
+	scanf("%d", &highlow);
+
+	printf("NO\tName\tGrams\tPrice\tRating\tRating No.\n");
+	printf("==================================================\n");
+	for(int i = 0; i < count; i++) {
+		if(p[i]->name == NULL) continue;
+		
+		if(highlow == 0) {
+
+			if(search < p[i]->price) {
+				printf("%2d\t", i+1);
+				readProduct(*p[i]);
+				scnt++;
+			}
+		} else if(highlow == 1) {
+
+			if(search > p[i]->price) {
+				printf("%2d\t", i+1);
+				readProduct(*p[i]);
+				scnt++;
+			}
+		} else if(highlow == 2) {
+
+			if(search ==  p[i]->price) {
+				printf("%2d\t", i+1);
+				readProduct(*p[i]);
+				scnt++;
+			}
+		}
+	}
+	
+	if(scnt == 0) printf("=> No matching data found!\n");
+}
 
 int deleteProduct(Product *p[], int n) {
 	free(p[n-1]);
@@ -189,8 +230,9 @@ int selectMenu() {
 	printf("3. Update\n");
 	printf("4. Find by name\n");
 	printf("5. Find by rating\n");
-	printf("6. Delete\n");
-	printf("7. Save to file\n");
+	printf("6. Find by price\n");
+	printf("7. Delete\n");
+	printf("8. Save to file\n");
 	printf("0. End Program\n");
 	printf("원하는 메뉴는? => ");
 	scanf("%d", &menu);
