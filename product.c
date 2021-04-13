@@ -108,18 +108,29 @@ void searchName(Product *p[], int count) {
 	scanf("%s", search);
 	getchar();
 
-	printf("NO\tName\tGrams\tPrice\tRating\tRating No.\n");
-	printf("==================================================\n");
 	for(int i = 0; i < count; i++) {
 		if(p[i]->name == NULL) continue;
 		if(strstr(p[i]->name, search)) {
-			printf("%2d\t", i+1);
-			readProduct(*p[i]);
 			scnt++;
 		}
 	}
-	
-	if(scnt == 0) printf("=> No matching data found!\n");
+
+	if(scnt == 0) {
+
+		printf("\n=> No matching data found!\n");
+
+	} else {
+
+		printf("\nNO\tName\tGrams\tPrice\tRating\tRating No.\n");
+		printf("==================================================\n");
+		for(int i = 0; i < count; i++) {
+			if(p[i]->name == NULL) continue;
+			if(strstr(p[i]->name, search)) {
+				printf("%2d\t", i+1);
+				readProduct(*p[i]);
+			}
+		}
+	}
 }
 
 void searchRating(Product *p[], int count) {
@@ -132,33 +143,57 @@ void searchRating(Product *p[], int count) {
 	printf("Choose mode (0 : Higher, 1 : Lower, 2 : Same): ");
 	scanf("%d", &highlow);
 
-	printf("NO\tName\tGrams\tPrice\tRating\tRating No.\n");
-	printf("==================================================\n");
 	for(int i = 0; i < count; i++) {
 		if(p[i]->name == NULL) continue;
-		
+
 		if(highlow == 0) {
-			if(search < p[i]->rating) {
-				printf("%2d\t", i+1);
-				readProduct(*p[i]);
-				scnt++;
-			}
+
+			if(search < p[i]->rating) scnt++;
+	
 		} else if(highlow == 1) {
-			if(search > p[i]->rating) {
-				printf("%2d\t", i+1);
-				readProduct(*p[i]);
-				scnt++;
-			}
+
+			if(search > p[i]->rating) scnt++;
+	
 		} else if(highlow == 2) {
-			if(search ==  p[i]->rating) {
-				printf("%2d\t", i+1);
-				readProduct(*p[i]);
-				scnt++;
+
+			if(search == p[i]->rating) scnt++;
+	
+		}
+	}
+
+	if(scnt == 0) {
+
+		printf("\n=> No matching data found!\n");
+
+	} else {
+
+		printf("\nNO\tName\tGrams\tPrice\tRating\tRating No.\n");
+		printf("==================================================\n");
+		for(int i = 0; i < count; i++) {
+			if(p[i]->name == NULL) continue;
+		
+			if(highlow == 0) {
+
+				if(search < p[i]->rating) {
+					printf("%2d\t", i+1);
+					readProduct(*p[i]);
+				}
+
+			} else if(highlow == 1) {
+
+				if(search > p[i]->rating) {
+					printf("%2d\t", i+1);
+					readProduct(*p[i]);
+				}
+			} else if(highlow == 2) {
+
+				if(search ==  p[i]->rating) {
+					printf("%2d\t", i+1);
+					readProduct(*p[i]);
+				}
 			}
 		}
 	}
-	
-	if(scnt == 0) printf("=> No matching data found!\n");
 }
 
 void searchPrice(Product *p[], int count) {
@@ -171,36 +206,58 @@ void searchPrice(Product *p[], int count) {
 	printf("Choose mode (0 : Higher, 1 : Lower, 2 : Same): ");
 	scanf("%d", &highlow);
 
-	printf("NO\tName\tGrams\tPrice\tRating\tRating No.\n");
-	printf("==================================================\n");
 	for(int i = 0; i < count; i++) {
 		if(p[i]->name == NULL) continue;
-		
+
 		if(highlow == 0) {
 
-			if(search < p[i]->price) {
-				printf("%2d\t", i+1);
-				readProduct(*p[i]);
-				scnt++;
-			}
+			if(search < p[i]->price) scnt++;
+	
 		} else if(highlow == 1) {
 
-			if(search > p[i]->price) {
-				printf("%2d\t", i+1);
-				readProduct(*p[i]);
-				scnt++;
-			}
+			if(search > p[i]->price) scnt++;
+	
 		} else if(highlow == 2) {
 
-			if(search ==  p[i]->price) {
-				printf("%2d\t", i+1);
-				readProduct(*p[i]);
-				scnt++;
+			if(search == p[i]->price) scnt++;
+	
+		}
+	}
+
+	if(scnt == 0) {
+
+		printf("\n=> No matching data found!\n");
+
+	} else {
+
+		printf("\nNO\tName\tGrams\tPrice\tRating\tRating No.\n");
+		printf("==================================================\n");
+		for(int i = 0; i < count; i++) {
+			if(p[i]->name == NULL) continue;
+		
+			if(highlow == 0) {
+
+				if(search < p[i]->price) {
+					printf("%2d\t", i+1);
+					readProduct(*p[i]);
+				}
+
+			} else if(highlow == 1) {
+
+				if(search > p[i]->price) {
+					printf("%2d\t", i+1);
+					readProduct(*p[i]);
+				}
+
+			} else if(highlow == 2) {
+
+				if(search ==  p[i]->price) {
+					printf("%2d\t", i+1);
+					readProduct(*p[i]);
+				}
 			}
 		}
 	}
-	
-	if(scnt == 0) printf("=> No matching data found!\n");
 }
 
 int deleteProduct(Product *p[], int n) {
